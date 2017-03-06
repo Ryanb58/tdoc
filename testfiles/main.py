@@ -18,6 +18,7 @@ class ClassName:
         """
         Add two numbers together.
         """
+        pass
 
 
 def hello():
