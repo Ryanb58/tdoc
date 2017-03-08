@@ -1,20 +1,33 @@
-Class 'ClassName', line 7
+## output.md
+#### ClassName
 -------------------------
 docstring for ClassName
 
-Function/Method '__init__', line 12
+#### ClassName2
+---------------------------
+docstring for ClassName2
+
+#### __init__
 -----------------------------------
 Constructor docstring.
 
-Function/Method 'add', line 18
+#### __init__
+-----------------------------------
+Constructor docstring.
+
+#### add
 ------------------------------
 Add two numbers together.
 
-Function/Method 'hello', line 25
+#### hello
 --------------------------------
 This a doc string to describe what the hello function does.
 
-Module 'main', line 2
+#### subtract
+-----------------------------------
+Subtract two numbers together.
+
+#### main
 ---------------------
 DOC STRING!!
 

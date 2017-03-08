@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 """Parse Python source code and get or print docstrings."""
 import ast
-
-
 from itertools import groupby
 from os.path import basename, splitext
-
 
 __all__ = ('get_docstrings', 'print_docstrings')
 
@@ -14,6 +11,12 @@ NODE_TYPES = {
     ast.ClassDef: 'Class',
     ast.FunctionDef: 'Function/Method',
     ast.Module: 'Module'
+}
+
+classes = []
+
+functions_by_class = {
+
 }
 
 
@@ -36,6 +39,12 @@ def get_docstrings(source):
                     isinstance(node.body[0].value, ast.Str)):
                 # lineno attribute of docstring node is where string ends
                 lineno = node.body[0].lineno - len(node.body[0].value.s.splitlines()) + 1
+
+            print("-" * 24)
+            print(node)
+            print(getattr(node, 'name', None))
+            print(lineno)
+            print("-" * 24)
 
             yield (node, getattr(node, 'name', None), lineno, docstring)
 
@@ -65,13 +74,24 @@ def print_docstrings(source, module='<string>'):
     grouped = groupby(docstrings, key=lambda x: NODE_TYPES.get(type(x[0])))
 
     output_folder = "docs/"
-    with open(output_folder + "output.md", "w") as fi:
+    file_name = "output.md"
+    with open(output_folder + file_name, "w") as fi:
+        fi.write("## " + file_name)
+        fi.write('\n')
         for type_, group in grouped:
+            #print("=" * 24)
+            #print(type_)
             for node, name, lineno, docstring in group:
+                #print("-" * 24)
+                #print(node)
+                #print(name)
+                #print(lineno)
+                #print("-" * 24)
+
                 name = name if name else module
                 heading = "%s '%s', line %s" % (type_, name, lineno or '?')
 
-                fi.write(heading)
+                fi.write("#### " + name)
                 fi.write('\n')
                 fi.write('-' * len(heading))
                 fi.write('\n')
