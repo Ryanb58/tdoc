@@ -69,6 +69,8 @@ def print_docstrings(source, module='<string>'):
         module = splitext(basename(filename))[0]
         source = source.read()
 
+    from pdb import set_trace;set_trace()
+
     docstrings = sorted(get_docstrings(source),
         key=lambda x: (NODE_TYPES.get(type(x[0])), x[1]))
     grouped = groupby(docstrings, key=lambda x: NODE_TYPES.get(type(x[0])))
