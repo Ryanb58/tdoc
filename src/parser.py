@@ -20,29 +20,30 @@ def parse_file(file_path):
         source = fp.read()
         tree = ast.parse(source)
 
-        from pdb import set_trace;set_trace()
+        output_folder = "docs/"
+        file_name = "output.md"
 
-        """
-        class FuncLister(ast.NodeVisitor):
-            def visit_FunctionDef(self, node):
-                print(node.name)
-                from pdb import set_trace;set_trace()
-                self.generic_visit(node)
+        with open(output_folder + file_name, "w") as output_file:
 
-            def visit_ClassDef(self, node):
-                print(node.name)
-                self.generic_visit(node)
+            class FuncLister(ast.NodeVisitor):
+                def visit_FunctionDef(self, node):
+                    output_file.write("#### Function: " + node.name)
+                    output_file.write('\n')
+                    output_file.write("`" + ast.get_docstring(node) + "`")
+                    output_file.write('\n')
+                    output_file.write('\n')
+                    self.generic_visit(node)
 
-        FuncLister().visit(tree)
-        """
-        """
-        # Walk the tree and build data structure.
-        for node in ast.walk(tree):
-            if isinstance(node, tuple(NODE_TYPES)):
-                docstring = ast.get_docstring(node)
-                print(docstring)
-                from pdb import set_trace;set_trace()
-        """
+                def visit_ClassDef(self, node):
+                    output_file.write("#### Class: " + node.name)
+                    output_file.write('\n')
+                    output_file.write("`" + ast.get_docstring(node) + "`")
+                    output_file.write('\n')
+                    output_file.write('\n')
+                    self.generic_visit(node)
+
+            FuncLister().visit(tree)
+
 
 
 if __name__ == '__main__':
