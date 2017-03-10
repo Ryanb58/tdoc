@@ -2,9 +2,15 @@ import os
 
 import click
 
+from mkdocs.commands.serve import serve
 from parser import parse_file
 
 exclude = ('venv')
+
+
+@click.group()
+def cli():
+    pass
 
 
 @click.command()
@@ -20,5 +26,15 @@ def generate(folder):
                 parse_file(file_path)
 
 
+@click.command()
+def run():
+    """Create a local server to view markdown files as website."""
+    serve()
+
+
+cli.add_command(generate)
+cli.add_command(run)
+
 if __name__ == '__main__':
-    generate()
+    cli()
+
