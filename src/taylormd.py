@@ -1,3 +1,4 @@
+"""TaylorMD."""
 import os
 
 import click
@@ -10,6 +11,7 @@ exclude = ('venv')
 
 @click.group()
 def cli():
+    """CLI Command Group."""
     pass
 
 
@@ -22,8 +24,9 @@ def generate(folder):
         [dnames.remove(d) for d in list(dnames) if d in exclude]
         for f in fnames:
             if f.endswith(".py"):
-                file_path = os.path.join(dirpath, f)
-                parse_file(file_path)
+                file_base = folder
+                file_path = dirpath[len(file_base):]
+                parse_file(file_base, file_path, f)
 
 
 @click.command()
