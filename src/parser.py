@@ -12,8 +12,7 @@ NODE_TYPES = {
 
 def parse_file(file_base, file_path, file_name):
     """Parse a python's files contents to extract API documentation."""
-    src_path = os.path.join(file_base, file_path, file_name)
-
+    src_path = os.path.join(file_base, file_path[1:], file_name)
     print(src_path)
 
     with open(src_path) as fp:
@@ -21,9 +20,9 @@ def parse_file(file_base, file_path, file_name):
         tree = ast.parse(source)
 
         output_folder = "./docs/"
-        dst_path = os.path.join(output_folder, file_path, file_name + ".md")
+        dst_path = os.path.join(output_folder, file_path[1:], file_name + ".md")
 
-        os.makedirs(os.path.join(output_folder, file_path), exist_ok=True)
+        os.makedirs(os.path.join(output_folder, file_path[1:]), exist_ok=True)
 
         with open(dst_path, "w") as output_file:
 
