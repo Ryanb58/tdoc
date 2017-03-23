@@ -56,8 +56,6 @@ def parse_file(file_base, file_path, file_name):
                     doc_string = ast.get_docstring(node)
                     if doc_string:
                         output_file.write("" + doc_string + "")
-                    else:
-                        output_file.write("> No docstring found.")
                     output_file.write('\n')
                     output_file.write('\n')
                     self.generic_visit(node)

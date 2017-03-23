@@ -13,3 +13,8 @@ taylormd generate ./testfiles
 ```
 taylormd serve
 ```
+
+### Screenshot of Results using the Material Theme:
+
+![Screen Shot](imgs/screenshot.png?raw=true "Screen Shot")
+

@@ -1,2 +1,2 @@
 site_name: My Docs
-theme: mkdocs
+theme: 'material'
