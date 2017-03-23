@@ -5,13 +5,13 @@ A python documentation generator.
 # Generate the markdown documentation.
 
 ```
-taylormd generate ./testfiles
+python taylormd.py generate ./testfiles
 ```
 
 ### Run a local webserver to view your documentation.
 
 ```
-taylormd serve
+python taylormd.py serve
 ```
 
 ### Screenshot of Results using the Material Theme:
