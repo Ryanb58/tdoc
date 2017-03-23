@@ -5,10 +5,10 @@ A python documentation generator.
 # Generate the markdown documentation.
 
 ```
-taylormd generate path/to/project
+taylormd generate ./testfiles
 ```
 
-### Run a local webserver to view your files via `mkdocs`.
+### Run a local webserver to view your documentation.
 
 ```
 taylormd serve

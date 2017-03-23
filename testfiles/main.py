@@ -5,7 +5,21 @@ DOC STRING!!
 
 class ClassName:
     """
-    docstring for ClassName
+    # I am a doc string.
+
+    [Google](http://google.com/)
+
+    * hello
+    * world
+
+    1. asdfj
+    1. kasd
+    1. askdjasd
+
+    ```
+    I am code
+    ```
+
     """
 
     def __init__():

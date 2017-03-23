@@ -33,7 +33,7 @@ def parse_file(file_base, file_path, file_name):
                     output_file.write('\n')
                     doc_string = ast.get_docstring(node)
                     if doc_string:
-                        output_file.write("`" + doc_string + "`")
+                        output_file.write("" + doc_string + "")
                     else:
                         output_file.write("`No docstring found.`")
                     output_file.write('\n')
@@ -49,7 +49,7 @@ def parse_file(file_base, file_path, file_name):
                     output_file.write('\n')
                     doc_string = ast.get_docstring(node)
                     if doc_string:
-                        output_file.write("`" + doc_string + "`")
+                        output_file.write("" + doc_string + "")
                     else:
                         output_file.write("`No docstring found.`")
                     output_file.write('\n')

@@ -1,4 +1,5 @@
 """TaylorMD."""
+from distutils.dir_util import copy_tree
 import os
 
 import click
@@ -15,11 +16,20 @@ def cli():
     pass
 
 
+def populate_docs_with_index():
+    """Populate docs/ with an index file."""
+    index_path = os.path.join("docs/", "index.md")
+    index_exists = os.path.exists(index_path)
+    if not index_exists:
+        copy_tree("default_docs/", "docs/")
+
+
 @click.command()
 @click.argument('folder')
 def generate(folder):
     """Simple program that greets NAME for a total of COUNT times."""
     print("You want to search in folder: " + str(folder))
+    populate_docs_with_index()
     for dirpath, dnames, fnames in os.walk(folder):
         [dnames.remove(d) for d in list(dnames) if d in exclude]
         for f in fnames:
