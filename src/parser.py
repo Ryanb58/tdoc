@@ -12,7 +12,7 @@ NODE_TYPES = {
 
 def parse_file(file_base, file_path, file_name):
     """Parse a python's files contents to extract API documentation."""
-    src_path = os.path.join(file_base, file_path[1:], file_name)
+    src_path = os.path.join(file_base, file_path, file_name)
     print(src_path)
 
     with open(src_path) as fp:
@@ -20,22 +20,28 @@ def parse_file(file_base, file_path, file_name):
         tree = ast.parse(source)
 
         output_folder = "./docs/"
-        dst_path = os.path.join(output_folder, file_path[1:], file_name + ".md")
+        dst_path = os.path.join(output_folder, file_path, file_name + ".md")
 
-        os.makedirs(os.path.join(output_folder, file_path[1:]), exist_ok=True)
+        os.makedirs(os.path.join(output_folder, file_path), exist_ok=True)
 
         with open(dst_path, "w") as output_file:
 
             class FuncLister(ast.NodeVisitor):
                 def visit_FunctionDef(self, node):
                     """Function Visitor"""
-                    output_file.write("#### " + node.name + "()")
+                    output_file.write("#### " + node.name + "(")
+                    if len(node.args.args) > 0:
+                        output_file.write(", ".join(
+                            str(x.arg) for x in node.args.args))
+                    output_file.write(')')
                     output_file.write('\n')
+                    output_file.write('\n')
+
                     doc_string = ast.get_docstring(node)
                     if doc_string:
-                        output_file.write("" + doc_string + "")
+                        output_file.write("> " + doc_string + "")
                     else:
-                        output_file.write("`No docstring found.`")
+                        output_file.write("> No docstring found.")
                     output_file.write('\n')
                     output_file.write('\n')
                     self.generic_visit(node)
@@ -45,13 +51,13 @@ def parse_file(file_base, file_path, file_name):
                     if node.name.lower().strip() != "meta":
                         output_file.write('--------------------')
                         output_file.write('\n')
-                    output_file.write("### " + node.name)
+                    output_file.write("## " + node.name)
                     output_file.write('\n')
                     doc_string = ast.get_docstring(node)
                     if doc_string:
                         output_file.write("" + doc_string + "")
                     else:
-                        output_file.write("`No docstring found.`")
+                        output_file.write("> No docstring found.")
                     output_file.write('\n')
                     output_file.write('\n')
                     self.generic_visit(node)
