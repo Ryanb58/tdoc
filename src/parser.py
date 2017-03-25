@@ -2,6 +2,9 @@
 
 import ast
 import os
+from md import get_function_markdown
+from md import get_class_markdown
+
 
 NODE_TYPES = {
     ast.ClassDef: 'Class',
@@ -29,35 +32,12 @@ def parse_file(file_base, file_path, file_name):
             class FuncLister(ast.NodeVisitor):
                 def visit_FunctionDef(self, node):
                     """Function Visitor"""
-                    output_file.write("#### " + node.name + "(")
-                    if len(node.args.args) > 0:
-                        output_file.write(", ".join(
-                            str(x.arg) for x in node.args.args))
-                    output_file.write(')')
-                    output_file.write('\n')
-                    output_file.write('\n')
-
-                    doc_string = ast.get_docstring(node)
-                    if doc_string:
-                        output_file.write("> " + doc_string + "")
-                    else:
-                        output_file.write("> No docstring found.")
-                    output_file.write('\n')
-                    output_file.write('\n')
+                    output_file.write(get_function_markdown(node))
                     self.generic_visit(node)
 
                 def visit_ClassDef(self, node):
                     """Class Visitor"""
-                    if node.name.lower().strip() != "meta":
-                        output_file.write('--------------------')
-                        output_file.write('\n')
-                    output_file.write("## " + node.name)
-                    output_file.write('\n')
-                    doc_string = ast.get_docstring(node)
-                    if doc_string:
-                        output_file.write("" + doc_string + "")
-                    output_file.write('\n')
-                    output_file.write('\n')
+                    output_file.write(get_class_markdown(node))
                     self.generic_visit(node)
 
             FuncLister().visit(tree)
