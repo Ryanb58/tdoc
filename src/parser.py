@@ -2,8 +2,8 @@
 
 import ast
 import os
-from md import get_function_markdown
-from md import get_class_markdown
+from .md import get_function_markdown
+from .md import get_class_markdown
 
 
 NODE_TYPES = {
