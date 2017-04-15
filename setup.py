@@ -5,6 +5,8 @@ setup(
     version='0.1',
     description='Python To Markdown Documentation Tool',
     author='Taylor Brazelton',
+    author_email='ryanb58@live.com',
+    url='https://github.com/Ryanb58/tdoc',
     keywords=['doc', 'gen', 'api', 'ast', 'auto'],
     packages=find_packages(),
     install_requires=[

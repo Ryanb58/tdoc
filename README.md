@@ -2,7 +2,15 @@
 A python documentation generator.
 
 
-# Generate the markdown documentation.
+### Installation
+
+```
+pip install tdoc
+```
+[pypi](https://pypi.python.org/pypi/tdoc)
+
+
+### Generate the markdown documentation.
 
 ```
 tdoc generate --folder ./testfiles
