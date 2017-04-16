@@ -23,7 +23,7 @@ tdoc generate --folder ./testfiles
 tdoc serve
 ```
 
-#### Non Auto Generated Docs:
+### Non Auto Generated Docs:
 
 To include custom markdown files simply create a folder called
 `default_docs` and place any and all markdown files inside of it. This
