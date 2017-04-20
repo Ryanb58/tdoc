@@ -9,9 +9,9 @@ from .parser import parse_file
 
 exclude = ('venv')
 
-MKDOCS_YML = './mkdocs.yml'
-DOCS_FOLDER = "./docs/"
-DEFAULT_DOCS_FOLDER = "./default_docs/"
+MKDOCS_YML = 'mkdocs.yml'
+DOCS_FOLDER = "docs/"
+DEFAULT_DOCS_FOLDER = "default_docs/"
 
 
 @click.group()
