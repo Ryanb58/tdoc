@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='tdoc',
-    version='0.1',
+    version='0.2',
     description='Python To Markdown Documentation Tool',
     author='Taylor Brazelton',
     author_email='ryanb58@live.com',
