@@ -7,7 +7,7 @@ A python documentation generator.
 ```
 pip install tdoc
 ```
-[pypi](https://pypi.python.org/pypi/tdoc)
+[https://pypi.python.org/pypi/tdoc](https://pypi.python.org/pypi/tdoc)
 
 
 
